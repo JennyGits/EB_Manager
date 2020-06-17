@@ -2,6 +2,8 @@ package com.example.my_eb_manager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.job.JobInfo;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,29 +30,29 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         textView = findViewById(R.id.textView);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getWebsite();
-            }
-        });
+        button.setOnClickListener(v -> gotoLoginActivity());
     }
 
-    private void getWebsite() {
-        new Thread(new Runnable() {
+    private void gotoLoginActivity() {
+        Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(loginIntent);
+        // finish();
+        /*new Thread(new Runnable() {
             @Override
             public void run() {
                 final StringBuilder builder = new StringBuilder();
                 try {
-                    Document doc = Jsoup.connect("https://www.naver.com").get();
-                    String title = doc.title();
-                    Elements links = doc.select("a[href]");
+                    Document doc = (Document) Jsoup.connect("https://www.google.com").get();
+                    //Element btnK = (Element) doc.select("input[name=btnK]").first();
 
-                    builder.append(title).append("\n");
+                    //String value = btnK.getAttribute("value");
+
+                    //textView.setText(value);
+
                 } catch (IOException e) {
                     builder.append("Error");
                 }
             }
-        }).start();
+        }).start();*/
     }
 }
