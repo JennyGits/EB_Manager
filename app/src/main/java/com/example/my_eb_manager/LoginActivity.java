@@ -13,8 +13,11 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
+
+import io.selendroid.standalone.SelendroidLauncher;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,6 +28,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txtID, txtPW;
     private String ID, PW;
     private Button btnLogin;
+
+    private SelendroidLauncher selendroidLauncher = null;
+    private WebDriver driver = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 // "네이버"를 텍스트로 가진 span 가져옴
                 elements = doc.getElementsByClass("logo_naver").get(0).getElementsByClass("blind");
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
