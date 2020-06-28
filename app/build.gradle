@@ -44,4 +44,11 @@ dependencies {
 
     // cardview
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    // https://mvnrepository.com/artifact/io.selendroid/selendroid
+    //implementation group: 'io.selendroid', name: 'selendroid', version: '0.17.0', ext: 'pom'
+
+    implementation 'io.selendroid:selendroid:0.17.0'
+
 }
+

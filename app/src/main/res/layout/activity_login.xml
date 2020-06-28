@@ -17,27 +17,41 @@
         app:layout_constraintVertical_bias="0.4"
         app:layout_constraintWidth_percent="0.6">
 
-        <EditText
-            android:id="@+id/textID"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutID"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Enter your ID"/>
+            android:hint="Enter your ID"
+            android:layout_marginTop="20dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-        <EditText
-            android:id="@+id/textPW"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPW"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="Enter your PW"/>
+            android:hint="Enter your PW"
+            android:layout_marginTop="20dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textPW"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:layout_marginTop="20dp"/>
 
