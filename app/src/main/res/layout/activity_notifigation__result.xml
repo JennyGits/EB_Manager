@@ -4,23 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Notifigation_ResultActivity">
 
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="알림 받는 페이지로 이동"
-        android:id="@+id/to_notipage"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calendar"
-        android:id="@+id/calendar"/>
-
-
+        android:text="대출 예약하신 책이 들어왔습니다."/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "346519931115",
+    "firebase_url": "https://ebmanager-5dd4c.firebaseio.com",
+    "project_id": "ebmanager-5dd4c",
+    "storage_bucket": "ebmanager-5dd4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346519931115:android:55b7f0ae48e26be6bd16ae",
+        "android_client_info": {
+          "package_name": "com.example.my_eb_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346519931115-rtn4l28303fhm006obp7tge7jj5t0ie8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQkRJY9Vo0bF51VqYoIRscsjtYpEa44IA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346519931115-rtn4l28303fhm006obp7tge7jj5t0ie8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
