@@ -23,6 +23,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarActivity extends AppCompatActivity {
+    String alarm_date = "2020-06-29";
+    String alarm_year = alarm_date.substring(0,3);
+    String alarm_month = alarm_date.substring(5,6);
+    String alarm_day = alarm_date.substring(8,9);
+
     String date;
     String current_date;
 
@@ -42,7 +47,6 @@ public class CalendarActivity extends AppCompatActivity {
 
         CalendarView calendarView = findViewById(R.id.calendarView);
         final Button reservation_btn = findViewById(R.id.reservation_btn);
-
         final Button currentdate = findViewById(R.id.currentdate);
 
         currentdate.setOnClickListener(new View.OnClickListener() {
@@ -63,14 +67,18 @@ public class CalendarActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 month = month + 1;
-                selected_date = year + "-" + month + "-" + day;
-                Toast.makeText(CalendarActivity.this, "" + year + "/" + month + "/" + day, 0).show();
-
+                //selected_date = year + "-" + month + "-" + day;
+                selected_date = year + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
+                Toast.makeText(CalendarActivity.this, selected_date, Toast.LENGTH_SHORT).show();
                 reservation_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         createNotificationChannel();
-                        Notification_notify();
+                        //if (current_date.equals(selected_date)) {
+                        if(selected_date.equals(alarm_date)) {
+                            //Toast.makeText(CalendarActivity.this, "asdf", Toast.LENGTH_SHORT).show();
+                            Notification_notify();
+                        }
                     }
                 });
             }
@@ -109,13 +117,13 @@ public class CalendarActivity extends AppCompatActivity {
                 .setAutoCancel(true);
     }
     public void Notification_notify() {
-        if (current_date.equals(selected_date)) {
+
             //알림 호출
             notificationManager = NotificationManagerCompat.from(this);
             // notificationId 설정
             int notificationId = 256;
             //notificationId 전달
             notificationManager.notify(notificationId, builder.build());
-        }
+
     }
 }
