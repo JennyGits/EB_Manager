@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,25 +13,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
 
-import io.selendroid.standalone.SelendroidLauncher;
-
 public class LoginActivity extends AppCompatActivity {
 
-    private String[] url = { "https://www.naver.com" };
-    Elements elements;
+    Element element;
+    private String[] url = { "http://m.e-lib.sen.go.kr/member/login.php", "https://www.naver.com" };
     private TextView textView;
 
     private EditText txtID, txtPW;
     private String ID, PW;
     private Button btnLogin;
-
-    private SelendroidLauncher selendroidLauncher = null;
-    private WebDriver driver = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,23 +40,10 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
 
         textView = findViewById(R.id.textView);
-
-        btnLogin.setOnClickListener(v -> {
-            ID = txtID.getText().toString();
-            PW = txtPW.getText().toString();
-            //SaveSharedPreference.setLoginInfo(LoginActivity.this, ID, PW);
-            //Toast.makeText(this, "로그인 정보가 저장되었습니다.", Toast.LENGTH_SHORT).show();
-
-            JsoupAsyncTask jsoupAsyncTask = new JsoupAsyncTask();
-            jsoupAsyncTask.execute();
-            if (elements != null) {
-                textView.setText(elements.text());
-            }
-        });
-
     }
 
-    private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
+    // JsoupAsyncTask 였던 것
+    /*private class JsoupAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -73,7 +58,18 @@ public class LoginActivity extends AppCompatActivity {
                 Document doc = Jsoup.parse(execute.body());
 
                 // "네이버"를 텍스트로 가진 span 가져옴
-                elements = doc.getElementsByClass("logo_naver").get(0).getElementsByClass("blind");
+                //elements = doc.getElementsByClass("logo_naver").get(0).getElementsByClass("blind");
+
+                element = doc.getElementById("member_id_tmp");
+                WebElement element_id = (WebElement) element;
+                //WebElement element_pw = (WebElement) doc.getElementById("member_pw_tmp");
+                //WebElement element_login_btn = (WebElement) doc.getElementById("save-btn");
+                element_id.sendKeys(ID);
+                //element_pw.sendKeys(PW);
+                //element_pw.sendKeys(Keys.ENTER);
+                Toast.makeText(LoginActivity.this, element_id.getText() + "로그인", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,5 +80,5 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
         }
-    }
+    }*/
 }
