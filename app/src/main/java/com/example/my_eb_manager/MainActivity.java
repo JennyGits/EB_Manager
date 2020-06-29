@@ -8,18 +8,21 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private FloatingActionButton floatingActionButton_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.button);
-
-        button.setOnClickListener(v -> is_LoginInfo_Exist());
+        floatingActionButton_add = findViewById(R.id.floatingActionButton);
+        floatingActionButton_add.setOnClickListener(v -> {
+            Toast.makeText(this, "버튼 눌림", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void is_LoginInfo_Exist() {
