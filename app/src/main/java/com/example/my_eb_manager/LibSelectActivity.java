@@ -1,16 +1,18 @@
 package com.example.my_eb_manager;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class LibSelectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -30,7 +32,36 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
         libs = getResources().getStringArray(R.array.Lib_Array);
 
         // ArrayAdapter에 ArrayList를 넣어줌
-        arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, libs);
+        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, libs) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                // 폰트 지정
+                //Typeface externalFont= Typeface.createFromAsset(getAssets(), "font/nanumsquarel.ttf");
+                //((TextView) view).setTypeface(externalFont);
+
+                // 텍스트 색 지정
+                ((TextView) view).setTextColor(getResources().getColor(R.color.spinner_text_color));
+
+                return view;
+            }
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                // 폰트 지정
+                //Typeface externalFont=Typeface.createFromAsset(getAssets(), "font/nanumsquarel.ttf");
+                //((TextView) view).setTypeface(externalFont);
+
+                // 배경 색 지정
+                view.setBackgroundColor(getResources().getColor(R.color.spinner_background_color));
+                // 텍스트 색 지정
+                ((TextView) view).setTextColor(getResources().getColor(R.color.spinner_text_color));
+
+                return view;
+            }
+        };
         // spinner에 ArrayAdapter 추가
         spinner.setAdapter(arrayAdapter);
 
