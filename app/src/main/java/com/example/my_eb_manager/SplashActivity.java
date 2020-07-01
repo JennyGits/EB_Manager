@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(() -> {
             // 로그인 정보가 저장되어 있는지
-            if (SaveSharedPreference.getUserName(SplashActivity.this).length() <= 0) {
+            if (SaveSharedPreference.getID(SplashActivity.this).length() <= 0) {
                 // Call Login Activity
                 Intent libIntent = new Intent(getApplicationContext(), LibSelectActivity.class);
                 startActivity(libIntent);
@@ -25,7 +25,6 @@ public class SplashActivity extends AppCompatActivity {
             } else {
                 // Call Main Activity
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                mainIntent.putExtra("LOGIN_INFO", SaveSharedPreference.getUserName(this));
                 startActivity(mainIntent);
                 finish();
             }

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">EB Manager</string>
-    <string name="ID_and_PW">ID &amp; PW</string>
+    
+    <string name="Lib_Select">이용 중인 도서관을 선택해주세요.</string>
+    <string name="Lib_Account">도서관 계정을 등록해주세요.</string>
+
+    <string-array name="Lib_Array">
+        <item>서울특별시 교육청 전자도서관</item>
+        <item>(추가 예정입니다.)</item>
+    </string-array>
 </resources>

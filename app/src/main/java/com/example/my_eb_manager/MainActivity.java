@@ -119,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void is_LoginInfo_Exist() {
+    /*private void is_LoginInfo_Exist() {
         // 저장된 정보가 있는지 확인
-        if (SaveSharedPreference.getUserName(MainActivity.this).length() <= 0) {
+        if (SaveSharedPreference.getID(MainActivity.this).length() <= 0) {
             // 로그인 액티비티 불러옴
             Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginIntent);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             // 로그인 하기
             Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
 
     public class MyJavascriptInterface {
