@@ -6,33 +6,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="143dp"
+        android:layout_height="138dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/lib" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintWidth_percent="0.9">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:text="@string/Lib_Account"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/font_hangang"
+            android:text="@string/Lib_Account"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <LinearLayout
-            android:layout_marginTop="40dp"
             android:layout_width="320dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="40dp"
             android:background="@drawable/spinner_background"
             android:orientation="vertical">
 
@@ -42,10 +51,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="13dp"
-                android:textSize="17sp"
-                android:textColor="@color/spinner_text_color"
                 android:fontFamily="@font/font_namsan"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="@color/spinner_text_color"
+                android:textSize="17sp" />
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -54,12 +63,13 @@
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="ID"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:hint="ID">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textID"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,14 +78,15 @@
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:hint="PW"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:hint="PW">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textPW"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>

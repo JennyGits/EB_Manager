@@ -12,6 +12,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,9 +29,10 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Element element;
-    private String[] url = { "http://m.e-lib.sen.go.kr/index.php", "http://m.e-lib.sen.go.kr/member/login.php", "https://www.naver.com" };
+    //Element element;
+    //private String[] url = { "http://m.e-lib.sen.go.kr/index.php", "http://m.e-lib.sen.go.kr/member/login.php", "https://www.naver.com" };
 
+    private TextInputLayout layoutID, layoutPW;
     private EditText txtID, txtPW;
     private String ID, PW;
     private Button nextBtn, preBtn;
@@ -54,13 +58,21 @@ public class LoginActivity extends AppCompatActivity {
             ID = txtID.getText().toString();
             PW = txtPW.getText().toString();
 
-            SaveSharedPreference.setLoginInfo(this, ID, PW);    // ID, PW 저장
-            Toast.makeText(this, "ID와 PW가 저장되었습니다.", Toast.LENGTH_SHORT).show();
+            if (ID.length() > 0 && PW.length() > 0) {
+                SaveSharedPreference.setLoginInfo(this, ID, PW);    // ID, PW 저장
+                Toast.makeText(this, "ID와 PW가 저장되었습니다.", Toast.LENGTH_SHORT).show();
 
-            Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(mainIntent);
-            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);  // 화면 전환 애니메이션
-            finish();
+                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainIntent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);  // 화면 전환 애니메이션
+                finish();
+            } else {
+                Toast.makeText(this, "ID나 PW가 비었어요!", Toast.LENGTH_SHORT).show();
+                /*if (ID.length() <= 0)
+                    layoutID.setError("empty!");
+                if (PW.length() <= 0)
+                    layoutPW.setError("empty!");*/
+            }
         });
 
         preBtn.setOnClickListener(v -> {

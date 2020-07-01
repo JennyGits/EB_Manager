@@ -5,23 +5,11 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-
-import java.io.StringReader;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         floatingActionButton_add = findViewById(R.id.floatingActionButton_add);
         recyclerView = findViewById(R.id.recycler1);
+
+        int position = getIntent().getIntExtra("position", -1);
+        if (position >= 0) {
+            itemDelete(position);
+        }
 
 
         // RecyclerView의 레이아웃 방식을 지정
@@ -77,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }));
+
+
         // RecyclerView 에 ItemTouchHelper 붙이기
         helper.attachToRecyclerView(recyclerView);
 
@@ -111,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void itemDelete(int postion) {
+        //adapter.items.remove(postion);
+        //adapter.notifyItemRemoved(postion);
+    }
 
 
 

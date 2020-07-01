@@ -22,6 +22,8 @@
         <activity android:name=".MainActivity" android:theme="@style/NoActionBarTheme"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".LibSelectActivity" android:theme="@style/NoActionBarTheme"/>
+        <activity android:name=".MyAlarmActivity" android:theme="@style/NoActionBarTheme"/>
+
     </application>
 
 </manifest>
