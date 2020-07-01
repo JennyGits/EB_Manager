@@ -19,7 +19,7 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" android:theme="@style/NoActionBarTheme"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".LibSelectActivity" android:theme="@style/NoActionBarTheme"/>
     </application>

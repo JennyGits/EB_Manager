@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton floatingActionButton_add;
 
-    private WebView webView;
+    //private WebView webView;
     private Document doc;
 
     private RecyclerView recyclerView;
@@ -41,6 +41,53 @@ public class MainActivity extends AppCompatActivity {
 
         floatingActionButton_add = findViewById(R.id.floatingActionButton_add);
         recyclerView = findViewById(R.id.recycler1);
+
+
+        // RecyclerView의 레이아웃 방식을 지정
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(manager);
+
+        // RecyclerView의 Adapter 세팅
+        adapter = new ListAdapter();
+        recyclerView.setAdapter(adapter);
+
+        // ItemTouchHelper 생성
+        helper = new ItemTouchHelper(new ItemTouchHelperCallback(new ItemTouchHelperListener() {
+            @Override
+            public boolean onItemMove(int from_position, int to_position) {
+                // 이동할 객체 저장
+                //NotiItem notiItem = adapter.items.get(from_position);
+                // 이동할 객체 삭제
+                //adapter.items.remove(from_position);
+                // 이동하고 싶은 position에 추가
+                //adapter.items.add(to_position, notiItem);
+
+                // Adapter에 데이터 이동알림
+                //adapter.notifyItemMoved(from_position, to_position);
+                return false;
+                //return true;
+            }
+
+            //-- 스와이프 --//
+            @Override
+            public void onItemSwipe(int position) {
+                adapter.items.remove(position);
+                adapter.notifyItemRemoved(position);
+            }
+
+        }));
+        // RecyclerView 에 ItemTouchHelper 붙이기
+        helper.attachToRecyclerView(recyclerView);
+
+        // 추가 버튼 누름
+        floatingActionButton_add.setOnClickListener(v -> {
+            Add_NotiItem(); // 아이템 생성
+        });
+
+
+        //// 본선 : webView ////
+        /*
         webView = findViewById(R.id.webView);
 
         // WebView
@@ -60,49 +107,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //지정한 URL을 웹 뷰로 접근하기
-        webView.loadUrl("https://www.naver.com");
+        webView.loadUrl("https://www.naver.com");*/
 
-
-
-        // RecyclerView의 레이아웃 방식을 지정
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-
-        // RecyclerView의 Adapter 세팅
-        adapter = new ListAdapter();
-        recyclerView.setAdapter(adapter);
-
-        // ItemTouchHelper 생성
-        helper = new ItemTouchHelper(new ItemTouchHelperCallback(new ItemTouchHelperListener() {
-            @Override
-            public boolean onItemMove(int from_position, int to_position) {
-                // 이동할 객체 저장
-                NotiItem notiItem = adapter.items.get(from_position);
-                // 이동할 객체 삭제
-                adapter.items.remove(from_position);
-                // 이동하고 싶은 position에 추가
-                adapter.items.add(to_position, notiItem);
-
-                // Adapter에 데이터 이동알림
-                adapter.notifyItemMoved(from_position, to_position);
-                return true;
-            }
-
-            //-- 스와이프 --//
-            @Override
-            public void onItemSwipe(int position) {
-                adapter.items.remove(position);
-                adapter.notifyItemRemoved(position);
-            }
-        }));
-        // RecyclerView 에 ItemTouchHelper 붙이기
-        helper.attachToRecyclerView(recyclerView);
-
-        // 추가 버튼 누름
-        floatingActionButton_add.setOnClickListener(v -> {
-            Add_NotiItem(); // 아이템 생성
-        });
     }
 
 
@@ -132,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
 
-    public class MyJavascriptInterface {
+    /*public class MyJavascriptInterface {
         @JavascriptInterface
         public void getHtml(String html) {
             // 위 자바스크립트가 호출되면 여기로 html이 반환됨
@@ -154,5 +160,5 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 }
