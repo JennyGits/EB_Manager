@@ -43,7 +43,7 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 // 폰트 지정
-                //Typeface externalFont= Typeface.createFromAsset(getAssets(), "font/nanumsquarel.ttf");
+                //Typeface externalFont= Typeface.createFromAsset(getAssets(), "font/seoulnamsan_eb.ttf");
                 //((TextView) view).setTypeface(externalFont);
 
                 // 텍스트 색 지정

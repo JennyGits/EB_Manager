@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText txtID, txtPW;
     private String ID, PW;
-    private Button btnLogin;
+    private Button nextBtn, preBtn;
+    private TextView showLibText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,14 +41,32 @@ public class LoginActivity extends AppCompatActivity {
 
         txtID = findViewById(R.id.textID);
         txtPW = findViewById(R.id.textPW);
-        btnLogin = findViewById(R.id.btnLogin);
+        nextBtn = findViewById(R.id.nextBtn);
+        preBtn = findViewById(R.id.preBtn);
+        showLibText = findViewById(R.id.showLibText);
 
-        btnLogin.setOnClickListener(v -> {
+        // showLibText 세팅
+        if (SaveSharedPreference.getLibrary(this).length() > 0) {
+            showLibText.setText(SaveSharedPreference.getLibrary(this));
+        }
+
+        nextBtn.setOnClickListener(v -> {
             ID = txtID.getText().toString();
             PW = txtPW.getText().toString();
+
+            SaveSharedPreference.setLoginInfo(this, ID, PW);    // ID, PW 저장
+            Toast.makeText(this, "ID와 PW가 저장되었습니다.", Toast.LENGTH_SHORT).show();
+
             Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mainIntent);
             overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);  // 화면 전환 애니메이션
+            finish();
+        });
+
+        preBtn.setOnClickListener(v -> {
+            Intent libIntent = new Intent(getApplicationContext(), LibSelectActivity.class);
+            startActivity(libIntent);
+            overridePendingTransition(R.anim.anim_slide_in_left, R.anim.anim_slide_out_right);
             finish();
         });
     }

@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 public class SaveSharedPreference {
     static final String PREF_ID = "id";
-    static final String PREF_PASSWORD = "password";
+    static final String PREF_PASSWORD = "pw";
     static final String PREF_LIBRARY = "library";
 
     static SharedPreferences getSharedPreferences(Context ctx) {
@@ -14,10 +14,10 @@ public class SaveSharedPreference {
     }
 
     // 계정 정보 저장
-    public static void setLoginInfo(Context ctx, final String userName, final String password) {
+    public static void setLoginInfo(Context ctx, final String id, final String pw) {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(PREF_ID, userName);
-        editor.putString(PREF_PASSWORD, password);
+        editor.putString(PREF_ID, id);
+        editor.putString(PREF_PASSWORD, pw);
         editor.commit();
     }
 
