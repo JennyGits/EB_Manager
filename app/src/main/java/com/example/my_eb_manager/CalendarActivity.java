@@ -26,11 +26,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarActivity extends AppCompatActivity {
-//    String alarm_date = "2020-07-01";
-//    String alarm_year = alarm_date.substring(0,3);
-//    String alarm_month = alarm_date.substring(5,6);
-//    String alarm_day = alarm_date.substring(8,9);
-
     String date;
     String current_date;
 
@@ -41,7 +36,6 @@ public class CalendarActivity extends AppCompatActivity {
     NotificationManagerCompat notificationManager;
     NotificationCompat.Builder builder;
     PendingIntent pendingIntent;
-    //private Object CalendarActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,21 +67,10 @@ public class CalendarActivity extends AppCompatActivity {
                 //selected_date = year + "-" + month + "-" + day;
                 selected_date = year + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
                 Toast.makeText(CalendarActivity.this, selected_date, Toast.LENGTH_SHORT).show();
-//                reservation_btn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        createNotificationChannel();
-//                        //if (current_date.equals(selected_date)) {
-//                        if(selected_date.equals(alarm_date)) {
-//                            Toast.makeText(CalendarActivity.this, "asdf", Toast.LENGTH_SHORT).show();
-//                            Notification_notify();
-//                        }
-//                    }
-//                });
                 reservation_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        createNotificationChannel();
+                        createNotification();
                         if(selected_date.equals(current_date)){
                             Toast.makeText(CalendarActivity.this,"asdf",Toast.LENGTH_SHORT).show();
                             Notification_notify();
@@ -98,10 +81,8 @@ public class CalendarActivity extends AppCompatActivity {
 
         });
     }
-    public void createNotificationChannel() {
+    public void createNotification() {
 
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
@@ -109,35 +90,24 @@ public class CalendarActivity extends AppCompatActivity {
             NotificationChannel channel = new NotificationChannel(NOTIFIGATION_CHANNEL_ID, name, importance);
             channel.setDescription(description);
 
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
 
-//            Notification mNotification = new Notification(icon, tickerText, when);
-//            mNotification.iconLevel = 1;
-//            mNoticationManager.notify(NOTIFICATION_ID, mNotification);
         }
 
-        // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(this, Notifigation_ResultActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        Context context;
-        //ypeface font = Typeface.createFromAsset(context.getAssets());
 
         builder = new NotificationCompat.Builder(this, NOTIFIGATION_CHANNEL_ID)
                 .setSmallIcon(R.drawable.notification)
                 .setContentTitle("대출 예약 만료 알림")
                 .setContentText("책 대출 예약일이 만료되었습니다")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
-
-
     }
+
     public void Notification_notify() {
             //알림 호출
             notificationManager = NotificationManagerCompat.from(this);
