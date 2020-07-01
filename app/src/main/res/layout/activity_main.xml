@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알림 받는 페이지로 이동"
-        android:id="@+id/to_notipage"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calendar"
-        android:id="@+id/calendar"/>
+        android:layout_height="wrap_content">
 
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="알림 받는 페이지로 이동"
+            android:id="@+id/to_notipage" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calendar 로 이동"
+            android:id="@+id/calendar"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

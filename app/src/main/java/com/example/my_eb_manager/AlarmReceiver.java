@@ -75,12 +75,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             // 노티피케이션 동작시킴
             notificationManager.notify(1234, builder.build());
-
-
-
             // 내일 같은 시간으로 알람시간 결정
             nextNotifyTime.add(Calendar.DATE, 1);
-
             //  Preference에 설정한 값 저장
             SharedPreferences.Editor editor = context.getSharedPreferences("daily alarm", MODE_PRIVATE).edit();
             editor.putLong("nextNotifyTime", nextNotifyTime.getTimeInMillis());
