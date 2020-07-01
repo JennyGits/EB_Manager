@@ -18,9 +18,10 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(() -> {
             // 로그인 정보가 저장되어 있는지
             if (SaveSharedPreference.getID(SplashActivity.this).length() <= 0) {
-                // Call Login Activity
+                // Call library Activity
                 Intent libIntent = new Intent(getApplicationContext(), LibSelectActivity.class);
                 startActivity(libIntent);
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);  // 화면 전환 애니메이션
                 finish();
             } else {
                 // Call Main Activity

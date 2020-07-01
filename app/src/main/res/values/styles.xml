@@ -9,9 +9,11 @@
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
-
         <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
 
+    <style name="SpinnerWithNoArrow" parent="@android:style/Widget.Spinner">
+        <item name="android:background">@android:drawable/edit_text</item>
     </style>
 
 </resources>

@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    // 아이템 생성 함수
+    // 아이템 추가 함수
     private void Add_NotiItem() {
         // 객체 생성
         NotiItem notiItem = new NotiItem("누가 내 머리에 똥 쌌어");
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // String -> Document 변환하는 함수
-    private static Document StringToDocument(String xmlStr) {
+    public static Document StringToDocument(String xmlStr) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         try

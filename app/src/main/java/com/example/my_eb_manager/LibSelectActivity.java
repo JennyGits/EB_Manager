@@ -1,11 +1,14 @@
 package com.example.my_eb_manager;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,7 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
     private ArrayAdapter<String> arrayAdapter;
 
     private Spinner spinner;
+    private Button nextBtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +31,7 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_lib_select);
 
         spinner = findViewById(R.id.spinner);
+        nextBtn = findViewById(R.id.nextBtn);
 
         // strings.xml 에서 불러오기
         libs = getResources().getStringArray(R.array.Lib_Array);
@@ -44,6 +49,9 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
                 // 텍스트 색 지정
                 ((TextView) view).setTextColor(getResources().getColor(R.color.spinner_text_color));
 
+                // 텍스트 가운데
+                //((TextView) view).setGravity(Gravity.CENTER);
+
                 return view;
             }
 
@@ -59,6 +67,9 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
                 // 텍스트 색 지정
                 ((TextView) view).setTextColor(getResources().getColor(R.color.spinner_text_color));
 
+                // 텍스트 가운데
+                //((TextView) view).setGravity(Gravity.CENTER);
+
                 return view;
             }
         };
@@ -66,6 +77,13 @@ public class LibSelectActivity extends AppCompatActivity implements AdapterView.
         spinner.setAdapter(arrayAdapter);
 
         spinner.setOnItemSelectedListener(this);
+
+        nextBtn.setOnClickListener(v -> {
+            Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(loginIntent);
+            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);  // 화면 전환 애니메이션
+            finish();
+        });
     }
 
     @Override

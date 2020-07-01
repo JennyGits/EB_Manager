@@ -1,7 +1,9 @@
 package com.example.my_eb_manager;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,12 +21,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
     Element element;
-    private String[] url = { "http://m.e-lib.sen.go.kr/member/login.php", "https://www.naver.com" };
-    private TextView textView;
+    private String[] url = { "http://m.e-lib.sen.go.kr/index.php", "http://m.e-lib.sen.go.kr/member/login.php", "https://www.naver.com" };
 
     private EditText txtID, txtPW;
     private String ID, PW;
@@ -39,7 +42,14 @@ public class LoginActivity extends AppCompatActivity {
         txtPW = findViewById(R.id.textPW);
         btnLogin = findViewById(R.id.btnLogin);
 
-        textView = findViewById(R.id.textView);
+        btnLogin.setOnClickListener(v -> {
+            ID = txtID.getText().toString();
+            PW = txtPW.getText().toString();
+            Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(mainIntent);
+            overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);  // 화면 전환 애니메이션
+            finish();
+        });
     }
 
     // JsoupAsyncTask 였던 것
