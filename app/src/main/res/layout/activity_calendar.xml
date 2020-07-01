@@ -32,4 +32,9 @@
         android:text="현재 날짜"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="468dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="디데이 날짜"
+        android:id="@+id/day_btn"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

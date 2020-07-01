@@ -5,13 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +16,8 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -61,18 +57,24 @@ public class CalendarActivity extends AppCompatActivity {
 
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
+
                 month = month + 1;
                 //selected_date = year + "-" + month + "-" + day;
                 selected_date = year + "-" + String.format("%02d", month) + "-" + String.format("%02d", day);
                 Toast.makeText(CalendarActivity.this, selected_date, Toast.LENGTH_SHORT).show();
+
+
+
                 reservation_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         createNotification();
+
                         if(selected_date.equals(current_date)){
-                            Toast.makeText(CalendarActivity.this,"asdf",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(CalendarActivity.this,"asdf",Toast.LENGTH_SHORT).show();
                             Notification_notify();
                         }
                     }
@@ -80,6 +82,15 @@ public class CalendarActivity extends AppCompatActivity {
             }
 
         });
+
+        Button dday_btn = findViewById(R.id.day_btn);
+        dday_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                D_day();
+            }
+        });
+
     }
     public void createNotification() {
 
@@ -116,5 +127,27 @@ public class CalendarActivity extends AppCompatActivity {
             //notificationId 전달
             notificationManager.notify(notificationId, builder.build());
 
+    }
+    //D_day 계산
+    public int D_day() {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date calDate_current = format.parse(current_date);
+            Date calDate_selected = format.parse(selected_date);
+            long calDate = calDate_current.getTime() - calDate_selected.getTime();
+
+            long calDays = calDate / (24 * 60 * 60 * 1000);
+
+            calDays = Math.abs(calDays);
+
+            Toast.makeText(CalendarActivity.this, "D-day: " + calDays, Toast.LENGTH_SHORT).show();
+            //System.out.println("두 날짜의 날짜 차이: " + calDays);
+
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+        return 1;
     }
 }

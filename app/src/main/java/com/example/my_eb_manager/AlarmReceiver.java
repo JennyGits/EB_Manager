@@ -22,8 +22,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
-
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notificationIntent = new Intent(context, MainActivity.class);
 
@@ -64,7 +62,6 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setAutoCancel(true)
                 .setDefaults(NotificationCompat.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
-
                 .setTicker("{Time to watch some cool stuff!}")
                 .setContentTitle("대출 예약 알림")
                 .setContentText(date_text+"대출 예약하신 책의 예약 만료일입니다")
